@@ -116,17 +116,17 @@ metadata:
 spec:
   tls:
   - hosts:
-    - @INGRESS_SUBDOMAIN@
+    - todo.@INGRESS_SUBDOMAIN@
     secretName: @INGRESS_SECRET@
   rules:
-  - host: @INGRESS_SUBDOMAIN@
+  - host: todo.@INGRESS_SUBDOMAIN@
     http:
       paths:
-      - path: /mytodo/api
+      - path: /api
         backend:
           serviceName: todo-api
           servicePort: 80
-      - path: /mytodo/
+      - path: /
         backend:
           serviceName: todo-nginx
           servicePort: 8080
