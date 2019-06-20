@@ -3,4 +3,4 @@
 /todo-api/bin/**
 /todo-api/obj/**
 /todo-api/Properties/launchSettings.json
-/deploy2kube.yaml
+/deploy2kube.yml
