@@ -1,5 +1,5 @@
 # todo-2018
-Example Todo application on Kubernetes using ASP Core .NET 2.1, Cloudant NoSQL DB  and IBM Cloud Object Storage 
+Example Todo application on Kubernetes using ASP Core .NET 2.1, Cloudant NoSQL DB  and IBM Cloud Object Storage
 
 ## Description
 This is a small todo application with the following components:
@@ -9,7 +9,7 @@ This is a small todo application with the following components:
 * OpenResty/NGINX Caching Webserver => caching static webcontent proxy for api
 ![alt text](doc/architecture.png "Description goes here")
 
-1. The user sends a request to the public endpoint application which is represented by an Ingress application load balancer that load balances incoming network traffic across app pods in the cluster. 
+1. The user sends a request to the public endpoint application which is represented by an Ingress application load balancer that load balances incoming network traffic across app pods in the cluster.
 2. The loadbalancer forwards to one of the available Pods of the deployed Services.
 3. The NGINX/OpenResty Pods accessing the Cloud Object Storage bucket via HMAC Authorization and caching the webcontent.
 4. The ASP.NET Core 2.1 todo-api provides a REST interface for CRUD operations of TODO items and is accessing the Cloudant NoSQL DB.
@@ -63,6 +63,6 @@ kubectl create -f deploy2kube.yaml
 kubectl describe ingress todo-app
 ```
 12. Open the application in the Browser based on the output from the todo-app ingress information
-https://YOURCLUSTERSUBDOMAIN.DOMAIN/mytodo/index.html
+https://todo.YOURCLUSTERSUBDOMAIN.DOMAIN/index.html
 
 ![alt text](doc/screenshot.png "Description goes here")
