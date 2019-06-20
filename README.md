@@ -56,7 +56,7 @@ cp env.local.sample env.local
 ```
 10. deploy to kubernetes
 ```shell
-kubectl create -f deploy2kube.yaml
+kubectl create -f deploy2kube.yml
 ```
 11. Review the deployed items
 ```shell
