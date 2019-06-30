@@ -3,6 +3,7 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: todo-api
+  namespace: @NAMESPACE@
 spec:
   replicas: 2
   template:
@@ -40,19 +41,21 @@ kind: Service
 apiVersion: v1
 metadata:
   name: todo-api
+  namespace: @NAMESPACE@
 spec:
   selector:
     app: todo-api
     tier: backend
   ports:
   - protocol: TCP
-    port: 80
-    targetPort: 80
+    port: 8080
+    targetPort: 8080
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: todo-nginx
+  namespace: @NAMESPACE@
 spec:
   replicas: 2
   template:
@@ -97,6 +100,7 @@ kind: Service
 apiVersion: v1
 metadata:
   name: todo-nginx
+  namespace: @NAMESPACE@
 spec:
   selector:
     app: todo-nginx
@@ -110,6 +114,7 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: todo-app
+  namespace: @NAMESPACE@
   annotations:
    ingress.bluemix.net/redirect-to-https: "True"
    ingress.bluemix.net/rewrite-path: "serviceName=todo-api rewrite=/api;serviceName=todo-nginx rewrite=/;"
@@ -125,7 +130,7 @@ spec:
       - path: /api
         backend:
           serviceName: todo-api
-          servicePort: 80
+          servicePort: 8080
       - path: /
         backend:
           serviceName: todo-nginx
