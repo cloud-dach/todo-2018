@@ -1,11 +1,15 @@
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: todo-api
   namespace: @NAMESPACE@
 spec:
   replicas: 2
+  selector:
+    matchLabels:
+      app: todo-api
+      tier: backend
   template:
     metadata:
       labels:
@@ -51,13 +55,17 @@ spec:
     port: 8080
     targetPort: 8080
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: todo-nginx
   namespace: @NAMESPACE@
 spec:
   replicas: 2
+  selector:
+    matchLabels:
+      app: todo-nginx
+      tier: web
   template:
     metadata:
       labels:
